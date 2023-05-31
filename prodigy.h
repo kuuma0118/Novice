@@ -1,9 +1,9 @@
-#pragma once
+#include "Player.h"
 
-class Player {
+class Prodigy {
 public:
-	Player(int posX, int posY, int speed, int size);
-	~Player();
+	Prodigy(int posX, int posY, int velocity, int speed, int size);
+	~Prodigy();
 
 	void Update(char keys[]);
 	void Draw();
@@ -14,11 +14,10 @@ public:
 	int Getsize() { return size_; };
 	void SetPosition(int x, int y);
 
-
 private:
 	int posX_;
 	int posY_;
+	int velocity_;
 	int speed_;
 	int size_;
-
 };

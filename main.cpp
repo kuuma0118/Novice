@@ -1,4 +1,6 @@
 #include <Novice.h>
+#include"Player.h"
+#include <stdio.h>
 
 const char kWindowTitle[] = "学籍番号";
 
@@ -12,6 +14,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	char keys[256] = {0};
 	char preKeys[256] = {0};
 
+	Player* player = new Player(0, 10, 5, 50);
+
+
+
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
 		// フレームの開始
@@ -24,7 +30,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓更新処理ここから
 		///
-
+		player->Update(keys);
 		///
 		/// ↑更新処理ここまで
 		///
@@ -32,7 +38,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓描画処理ここから
 		///
-
+		player->Draw();
 		///
 		/// ↑描画処理ここまで
 		///

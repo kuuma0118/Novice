@@ -9,12 +9,13 @@ Player::Player(int posX, int posY, int speed, int size) {
 }
 
 
-void Player::Update(char keys[], char preKeys[]) {
-	if (keys[DIK_SPACE])
-		posY_ -= speed_;
-	if (keys[DIK_SPACE])
-		posX_ += speed_;
-
+void Player::Update(char keys[]) {
+	if (keys[DIK_SPACE]) {
+		if (posX_ > 240) {
+			posY_ += speed_;
+		}	
+	}
+		if (keys[DIK_SPACE]) posX_ += speed_;
 }
 
 void Player::SetPosition(int x, int y) {
