@@ -1,40 +1,16 @@
 #include <Novice.h>
 #include"Player.h"
 #include"Prodigy.h"
+#include"honor.h"
 #include <stdio.h>
 #include <iostream>
 #include <cmath>
+#include <cstdlib>
+#define _USE_MATH_DEFINES
+#include <math.h>
+#include <assert.h>
 
 const char kWindowTitle[] = "学籍番号";
-
-
-//class Enemy {
-//private:
-//    int positionX;
-//    int positionY;
-//    int velocity;
-//
-//
-//public:
-//    Enemy(int initialPositionX, int initialPositionY, int initialVelocity)
-//        : positionX(initialPositionX), positionY(initialPositionY), velocity(initialVelocity){}
-//
-//    void updatePosition() {
-//   
-//        // 相手の予測位置に向かって移動
-//        positionX += velocity ;
-//        positionY += velocity ;
-//    }
-//
-//    int getPositionX() const {
-//        return positionX;
-//    }
-//
-//    int getPositionY() const {
-//        return positionY;
-//    }
-//};
-
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
@@ -48,8 +24,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	Player* player = new Player(0, 10, 5, 50);
 
+	Prodigy* prodigy = new Prodigy(0, 10, 5, 5, 40,false,false);
 
-	Prodigy* prodigy = new Prodigy(0, 10, 5, 5, 40,false);
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
@@ -66,11 +42,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		if (player->GetposX() >= 340) 
 		{
-			prodigy->Flag();
+			prodigy->Flag1();
 		}
+	/*	if (player->GetposY() <= 340 && prodigy->GetposY() < player->GetposY())
+		{
+			prodigy->Flag2();
+		}*/
 		
 		player->Update(keys);
 		prodigy->Update(keys);
+	
 
 		///
 		/// ↑更新処理ここまで
@@ -81,6 +62,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		player->Draw();
 		prodigy->Draw();
+	
 		///
 		/// ↑描画処理ここまで
 		///
