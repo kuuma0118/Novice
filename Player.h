@@ -3,7 +3,6 @@
 class Player {
 public:
 	Player(int posX, int posY, int speed, int size);
-	~Player();
 
 	void Update(char keys[]);
 	void Draw();

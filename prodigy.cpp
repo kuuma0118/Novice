@@ -1,25 +1,34 @@
 #include "prodigy.h"
-#include <cmath>
 #include <Novice.h>
 
-
-Prodigy::Prodigy(
-    double initialPositionX, double initialPositionY, double initialVelocity) {
-	posX_(initialPositionX), positionY(initialPositionY), velocity(initialVelocity)
+Prodigy::Prodigy(int posX, int posY, int speedX, int speedY, int size, int flag) {
+	posX_ = posX;
+	posY_ = posY;
+	speedX_ = speedX;
+	speedY_ = speedY;
+	size_ = size;
+	flag_ = flag;
 }
 
-void Prodigy::updatePosition() {
-	double predictedX = opponent->posX_();
-	double predictedY = opponent->predictPositionY();
 
-	double deltaX = predictedX - positionX;
-	double deltaY = predictedY - positionY;
-	double angle = std::atan2(deltaY, deltaX);
-
-	positionX += velocity * std::cos(angle);
-	positionY += velocity * std::sin(angle);
+void Prodigy::Update(char keys[]) {
+	if (keys[DIK_SPACE]) {
+		if (flag_ == false) {
+			posY_ += speedY_;
+		}
+		posX_ += speedX_;
+	}
 }
 
-double Prodigy::getPositionX() const { return positionX; }
+void Prodigy::Flag() {
+	flag_ = true;
+}
 
-double Prodigy::getPositionY() const { return positionY; }
+void Prodigy::SetPosition(int x, int y) {
+	posX_ = x;
+	posY_ = y;
+}
+
+void Prodigy::Draw() {
+	Novice::DrawBox(posX_, posY_, size_, size_, 0.0, RED, kFillModeSolid);
+}
